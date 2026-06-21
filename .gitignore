@@ -1,0 +1,19 @@
+# Build artifacts
+/target/
+node_modules/
+/dist/
+console/dist/
+firmware/pkg/
+*.wasm
+
+# Local-only notes (vision, roadmap, design fiction, scratch)
+.local/
+
+# OS / editor cruft
+.DS_Store
+*.heic
+
+# Environment / tooling
+.nix-*
+result
+.env

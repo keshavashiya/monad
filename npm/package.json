@@ -1,0 +1,33 @@
+{
+  "name": "keshavashiya",
+  "version": "5.0.0",
+  "description": "Boot Keshav Ashiya's compiled identity kernel (MONAD) in your terminal. v4 was a static card; v5 is a real WASM kernel you can run, script, and let an AI agent interview.",
+  "bin": {
+    "keshavashiya": "./card.js",
+    "monad": "./card.js"
+  },
+  "files": [
+    "card.js",
+    "monad.wasm"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "author": "Keshav Ashiya <keshavashiya@outlook.com> (https://github.com/keshavashiya)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keshavashiya/monad.git"
+  },
+  "keywords": [
+    "npx",
+    "card",
+    "business card",
+    "monad",
+    "wasm",
+    "wasi",
+    "mcp",
+    "identity",
+    "resume"
+  ]
+}

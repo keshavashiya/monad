@@ -1,0 +1,17 @@
+[package]
+name = "monad-cli"
+version = "0.1.0"
+edition = "2021"
+description = "MONAD CLI — native adapter over the kernel: one-shot commands, REPL, and an MCP server."
+license = "MIT"
+
+[[bin]]
+name = "monad"
+path = "src/main.rs"
+
+[dependencies]
+monad-kernel = { path = "../kernel" }
+serde_json = "1"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

@@ -1,0 +1,50 @@
+name: publish-npm
+
+# Optional: publish the `keshavashiya` package to npm and attach monad.wasm to the
+# GitHub Release. Runs only on version tags (v*) or published releases, so normal
+# pushes are unaffected. Requires an NPM_TOKEN repository secret.
+
+on:
+  push:
+    tags: ['v*']
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write # to attach the binary to the release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: wasm32-unknown-unknown
+
+      - name: Add WASI target
+        run: rustup target add wasm32-wasip1
+
+      - name: Build WASI binary
+        run: make wasi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish to npm
+        run: npm publish --access public
+        working-directory: npm/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Attach monad.wasm to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: npm/monad.wasm

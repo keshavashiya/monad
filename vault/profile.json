@@ -1,0 +1,320 @@
+{
+  "$schema": "./schema.json",
+  "meta": {
+    "kernel": "monad",
+    "build": "computed-at-build-time — run `verify` for the reproducible vault sha256"
+  },
+  "identity": {
+    "name": "Keshav Ashiya",
+    "handle": "keshavashiya",
+    "title": "Head of Engineering",
+    "location": "localhost",
+    "timezone": "UTC"
+  },
+  "roles": [
+    {
+      "title": "Head of Engineering",
+      "org": "Popular Digital AI",
+      "tenure": "April 2026 – Present",
+      "focus": "leadership, architecture, fleet platform, data pipelines, computer vision",
+      "url": "https://populargroup.in/"
+    },
+    {
+      "title": "Senior Software Engineer",
+      "org": "Popular Digital AI",
+      "tenure": "April 2025 – March 2026",
+      "focus": "architecture, fleet platform, data pipelines, computer vision",
+      "url": "https://populargroup.in/"
+    },
+    {
+      "title": "Senior Software Engineer",
+      "org": "Akrity Computing Pvt Ltd",
+      "tenure": "Nov 2023 – Oct 2024",
+      "focus": "distributed microservices, workflow automation, technical leadership",
+      "url": "https://akrity.com/"
+    },
+    {
+      "title": "Software Engineer",
+      "org": "Akrity Computing Pvt Ltd",
+      "tenure": "Nov 2021 – Nov 2023",
+      "focus": "workflow automation, microservices, third-party integrations",
+      "url": "https://akrity.com/"
+    },
+    {
+      "title": "Software Developer",
+      "org": "Hexooid Ventures Private Limited",
+      "tenure": "June 2020 – Nov 2021",
+      "focus": "React Native, CRM architecture, wealth management",
+      "url": "https://hexooid.com/"
+    },
+    {
+      "title": "Developer",
+      "org": "Capdice LLP",
+      "tenure": "June 2019 – June 2020",
+      "focus": "full-stack web and mobile development",
+      "url": "https://capdice.com/"
+    }
+  ],
+  "stacks": [
+    { "name": "React",              "proficiency": "advanced",   "years": 6 },
+    { "name": "React Native",       "proficiency": "advanced",   "years": 5 },
+    { "name": "TypeScript",         "proficiency": "advanced",   "years": 5 },
+    { "name": "Node.js",            "proficiency": "advanced",   "years": 6 },
+    { "name": "Python",             "proficiency": "advanced",   "years": 4 },
+    { "name": "FastAPI",            "proficiency": "proficient", "years": 2 },
+    { "name": "MongoDB",            "proficiency": "advanced",   "years": 5 },
+    { "name": "PostgreSQL",         "proficiency": "proficient", "years": 4 },
+    { "name": "Redis",              "proficiency": "proficient", "years": 4 },
+    { "name": "Docker",             "proficiency": "advanced",   "years": 4 },
+    { "name": "Kubernetes",         "proficiency": "proficient", "years": 3 },
+    { "name": "Kafka",              "proficiency": "proficient", "years": 2 },
+    { "name": "Linux",              "proficiency": "advanced",   "years": 6 },
+    { "name": "JavaScript (ES6+)",  "proficiency": "expert",     "years": 6 }
+  ],
+  "systems": [
+    {
+      "name": "Uber Fleet Platform",
+      "architecture": "FastAPI + React + React Native",
+      "description": "PMV Uber application serving 2000+ vehicle fleet with ETL pipelines processing 15-20K trips daily, webhook infrastructure handling 30M+ records, and YOLOv11m-based vehicle inspection",
+      "links": []
+    },
+    {
+      "name": "Enterprise Workflow Engine",
+      "architecture": "Node.js + MongoDB + React",
+      "description": "Configuration-driven automation system processing 10,000+ daily workflows with 800+ third-party integrations and 99.9% uptime",
+      "links": []
+    },
+    {
+      "name": "Wealth Management App",
+      "architecture": "React Native + Redux",
+      "description": "Cross-platform mobile application with CRM architecture, Dealer/Distributor/Customer modules, real-time dynamic pricing, and international KYC",
+      "links": []
+    },
+    {
+      "name": "MONAD",
+      "architecture": "Rust + WASM + TTY",
+      "description": "A compiled identity kernel — the system you are currently interacting with",
+      "links": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "docify",
+      "status": "active",
+      "description": "Your personal research assistant that remembers everything you've ever read (Python, 172★)",
+      "url": "https://github.com/keshavashiya/docify"
+    },
+    {
+      "name": "brain",
+      "status": "active",
+      "description": "Give your AI a hippocampus. A unified, local-first memory operating system (Rust, 34★)",
+      "url": "https://github.com/keshavashiya/brain"
+    },
+    {
+      "name": "codesage",
+      "status": "active",
+      "description": "Local-first CLI code intelligence tool with LangChain-powered RAG (Python, 9★)",
+      "url": "https://github.com/keshavashiya/codesage"
+    },
+    {
+      "name": "inspectify",
+      "status": "active",
+      "description": "AI-powered vehicle damage detection and inspection system using YOLO11m (Python)",
+      "url": "https://github.com/keshavashiya/inspectify"
+    },
+    {
+      "name": "readinglist",
+      "status": "active",
+      "description": "Automate, Curate, Share: Open Source Reading List Project (JavaScript, 6★)",
+      "url": "https://github.com/keshavashiya/readinglist"
+    },
+    {
+      "name": "MONAD",
+      "status": "active",
+      "description": "Compiled identity kernel. A WASM binary that answers queries about one person.",
+      "url": "https://github.com/keshavashiya/monad"
+    }
+  ],
+  "links": {
+    "email": "keshavashiya@outlook.com",
+    "github": "https://github.com/keshavashiya",
+    "linkedin": "https://linkedin.com/in/keshavashiya",
+    "twitter": "https://twitter.com/keshavashiya",
+    "website": "https://github.com/keshavashiya",
+    "resume": "https://docs.google.com/document/d/1TylqIi6DqpCyvsFDweYk_kIKEE7HCDRx1r1_UqBx4jA/export?format=pdf",
+    "meeting": "https://calendly.com/keshavashiya/30min"
+  },
+  "filesystem": {
+    "/": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/bin": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/bin/monad": {
+      "type": "file",
+      "content": "WebAssembly module (wasm32) — the compiled MONAD kernel. The same core runs in the browser, under WASI, and natively. Run `verify` for its reproducible vault hash.",
+      "permissions": "-r-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/etc": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/etc/monad": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/etc/monad/config.json": {
+      "type": "file",
+      "content": "{\n  \"kernel\": \"monad\",\n  \"stateless\": true,\n  \"boot\": {\n    \"deterministic\": true\n  }\n}",
+      "permissions": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/home": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/home/keshav": {
+      "type": "dir",
+      "permissions": "drwx------",
+      "owner": "keshav",
+      "group": "keshav",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/home/keshav/notes": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "keshav",
+      "group": "keshav",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/home/keshav/notes/distributed-systems.txt": {
+      "type": "file",
+      "content": "Distributed systems notes:\n- Eventual consistency requires conflict resolution strategies (CRDTs, vector clocks)\n- Kafka partitioning key design is critical for ordering guarantees\n- Circuit breaker pattern prevents cascading failures in microservice meshes\n- Rate limiting at API gateway vs service level — different tradeoffs",
+      "permissions": "-rw-r--r--",
+      "owner": "keshav",
+      "group": "keshav",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/home/keshav/contacts": {
+      "type": "file",
+      "content": "Reachable via:\n  email: keshavashiya@outlook.com\n  github: https://github.com/keshavashiya\n  linkedin: https://linkedin.com/in/keshavashiya",
+      "permissions": "-rw-r--r--",
+      "owner": "keshav",
+      "group": "keshav",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/proc": {
+      "type": "dir",
+      "permissions": "dr-xr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/proc/cpuinfo": {
+      "type": "file",
+      "content": "architecture : wasm32\nmodel        : MONAD kernel (compiled Rust)\ncores        : 1 (single-threaded, no preemption)\nclock        : injected by the host adapter — no fixed frequency\nstate        : stateless; every cold boot is identical",
+      "permissions": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/dev": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/dev/null": {
+      "type": "file",
+      "content": "",
+      "permissions": "-rw-rw-rw-",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/tmp": {
+      "type": "dir",
+      "permissions": "drwxrwxrwt",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/mnt": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/mnt/vault": {
+      "type": "dir",
+      "permissions": "drwxr-xr-x",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    },
+    "/mnt/vault/profile": {
+      "type": "file",
+      "content": "The identity vault — compiled into the kernel at build time via include_str!. This file is its source. Its reproducible sha256 is what `verify` reports.",
+      "permissions": "-r--r--r--",
+      "owner": "root",
+      "group": "root",
+      "modified": "2026-06-13T00:00:00Z"
+    }
+  },
+  "processes": [
+    { "pid": 0,  "ppid": -1, "user": "root",     "command": "init",          "state": "idle",      "cpu": 0.0 },
+    { "pid": 1,  "ppid": 0,  "user": "root",     "command": "monad",         "state": "running",   "cpu": 0.0 },
+    { "pid": 2,  "ppid": 1,  "user": "keshav",   "command": "fastapi/dev",   "state": "running",   "cpu": 0.0 },
+    { "pid": 3,  "ppid": 1,  "user": "keshav",   "command": "node/server",   "state": "sleeping",  "cpu": 0.0 },
+    { "pid": 4,  "ppid": 1,  "user": "keshav",   "command": "kafka/broker",  "state": "running",   "cpu": 0.0 },
+    { "pid": 5,  "ppid": 1,  "user": "keshav",   "command": "etl/pipeline",  "state": "running",   "cpu": 0.0 },
+    { "pid": 6,  "ppid": 1,  "user": "keshav",   "command": "monad/console", "state": "running",   "cpu": 0.0 }
+  ],
+  "bootlog": [
+    { "timestamp": "[    0.000000]", "message": "MONAD (wasm32 / native / wasi — one core, many adapters)" },
+    { "timestamp": "[    0.000412]", "message": "Kernel loaded at 0x0000, host interface attached" },
+    { "timestamp": "[    0.000889]", "message": "Vault integrity: reproducible sha256 verified (run `verify`)" },
+    { "timestamp": "[    0.001201]", "message": "Session initialized. Waiting for console attachment." },
+    { "timestamp": "[    0.001543]", "message": "Console attached via adapter (web/WASI). Exec ready." },
+    { "timestamp": "[    0.001884]", "message": "MONAD ready. Type help for available commands." }
+  ],
+  "fortune": [
+    "A monad is an indivisible unit of being. This one is mine.",
+    "The best error message is the one the user never sees.",
+    "Simplicity is prerequisite for reliability. — Edsger W. Dijkstra",
+    "A kernel is not a program. It is a question that has learned to answer itself.",
+    "There are two ways to write error-free code; only the third one works.",
+    "Make it correct, make it clear, make it concise, make it fast. In that order.",
+    "The contained is always simpler than the container.",
+    "A monad is just a monoid in the category of endofunctors.",
+    "Debugging is twice as hard as writing the code in the first place.",
+    "The purpose of abstraction is not to be vague, but to create a new semantic level.",
+    "Perfect is the enemy of shipped.",
+    "Any sufficiently complicated program contains an ad-hoc, informally-specified bug-ridden slow implementation of half of Common Lisp."
+  ]
+}

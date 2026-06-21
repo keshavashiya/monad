@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MONAD Vault Schema",
+  "description": "Schema for the MONAD identity kernel vault — the compiled-in personality data",
+  "type": "object",
+  "required": ["meta", "identity", "roles", "stacks", "systems", "projects", "links", "filesystem", "processes", "bootlog", "fortune"],
+
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Kernel name and a build note. The version is NOT here — it lives in the kernel crate (monad_kernel::VERSION) so it can never drift from the running code.",
+      "required": ["kernel", "build"],
+      "properties": {
+        "kernel":  { "type": "string", "pattern": "^monad$" },
+        "build":   { "type": "string" }
+      }
+    },
+
+    "identity": {
+      "type": "object",
+      "required": ["name", "handle", "title"],
+      "properties": {
+        "name":   { "type": "string" },
+        "handle": { "type": "string" },
+        "title":  { "type": "string" },
+        "location": { "type": "string" },
+        "timezone": { "type": "string" }
+      }
+    },
+
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "org", "tenure", "focus"],
+        "properties": {
+          "title":  { "type": "string" },
+          "org":    { "type": "string" },
+          "tenure": { "type": "string" },
+          "focus":  { "type": "string" },
+          "url":    { "type": "string", "format": "uri" }
+        }
+      }
+    },
+
+    "stacks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "proficiency", "years"],
+        "properties": {
+          "name":       { "type": "string" },
+          "proficiency": { "type": "string", "enum": ["expert", "advanced", "proficient", "familiar"] },
+          "years":     { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+
+    "systems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "architecture", "description"],
+        "properties": {
+          "name":         { "type": "string" },
+          "architecture": { "type": "string" },
+          "description":  { "type": "string" },
+          "links": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "status", "description"],
+        "properties": {
+          "name":        { "type": "string" },
+          "status":      { "type": "string", "enum": ["active", "inert", "frozen"] },
+          "description": { "type": "string" },
+          "url":         { "type": "string", "format": "uri" }
+        }
+      }
+    },
+
+    "links": {
+      "type": "object",
+      "properties": {
+        "email":    { "type": "string" },
+        "github":   { "type": "string", "format": "uri" },
+        "linkedin": { "type": "string", "format": "uri" },
+        "twitter":  { "type": "string", "format": "uri" },
+        "website":  { "type": "string", "format": "uri" },
+        "resume":   { "type": "string", "format": "uri" },
+        "meeting":  { "type": "string", "format": "uri" }
+      },
+      "required": ["email", "github"]
+    },
+
+    "filesystem": {
+      "type": "object",
+      "description": "Virtual filesystem tree. Keys are absolute paths, values are directory or file entries.",
+      "patternProperties": {
+        "^/": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type":        { "type": "string", "enum": ["file", "dir"] },
+            "content":     { "type": "string" },
+            "size":        { "type": "integer" },
+            "permissions": { "type": "string" },
+            "owner":       { "type": "string" },
+            "group":       { "type": "string" },
+            "modified":    { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "processes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pid", "ppid", "command", "state"],
+        "properties": {
+          "pid":     { "type": "integer" },
+          "ppid":    { "type": "integer" },
+          "user":    { "type": "string" },
+          "command": { "type": "string" },
+          "state":   { "type": "string", "enum": ["running", "idle", "sleeping", "stopped"] },
+          "cpu":     { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+
+    "bootlog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "message"],
+        "properties": {
+          "timestamp": { "type": "string", "pattern": "^\\[\\s*\\d+\\.\\d+\\]" },
+          "message":   { "type": "string" }
+        }
+      }
+    },
+
+    "fortune": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

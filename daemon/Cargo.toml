@@ -1,0 +1,12 @@
+[package]
+name = "monad-daemon"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "monad-daemon"
+path = "src/main.rs"
+
+[dependencies]
+monad-kernel = { path = "../kernel" }
+serde_json = "1"

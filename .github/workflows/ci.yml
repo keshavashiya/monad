@@ -1,0 +1,92 @@
+name: ci
+
+# Auto-build and verify both artifacts on every push and PR:
+#   - dist/        (the website: firmware wasm + console)
+#   - npm/         (the npx/wasmtime package: WASI monad.wasm + tarball)
+# Deployment to Pages is handled separately by deploy.yml (main only).
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: wasm32-unknown-unknown
+
+      - name: Add WASI target
+        run: rustup target add wasm32-wasip1
+
+      - name: Install wasm-pack
+        run: cargo install wasm-pack --locked
+
+      - name: Test kernel
+        run: cargo test -p monad-kernel
+
+      - name: Validate vault
+        run: ./scripts/validate.sh
+
+      # --- dist/ (the website) ---
+      - name: Build firmware (browser wasm)
+        run: wasm-pack build firmware/ --target web --out-name monad --release --no-opt
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: console/package-lock.json
+
+      - name: Build console
+        run: |
+          npm ci
+          npm run build
+        working-directory: console/
+
+      - name: Assemble dist
+        run: |
+          mkdir -p dist
+          cp -r console/dist/* dist/
+          cp firmware/pkg/monad_bg.wasm dist/monad.wasm
+
+      # --- npm/ (the npx + wasmtime package) ---
+      - name: Build WASI binary
+        run: make wasi
+
+      - name: Smoke-test the WASI binary
+        run: |
+          node npm/card.js whoami
+          node npm/card.js verify
+
+      - name: Pack npm package
+        run: npm pack
+        working-directory: npm/
+
+      # --- artifacts ---
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Upload npm package
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-package
+          path: |
+            npm/monad.wasm
+            npm/*.tgz

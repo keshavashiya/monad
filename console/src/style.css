@@ -1,0 +1,68 @@
+:root {
+  --bg: #0c0c0c;
+  --fg: #c6c6c6;
+  --amber: #e6b91e;
+  --gold: #ffd866;
+  --cyan: #78dce8;
+  --red: #d47766;
+  --green: #87d96c;
+  --grey: #585858;
+  --dim: #6c6c6c;
+
+  --font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'IBM Plex Mono', 'Consolas', monospace;
+  --font-size: 13px;
+  --line-height: 1.25;
+  --cursor-color: var(--amber);
+  --selection-bg: rgba(230, 185, 30, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#terminal {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 14px;
+  scrollbar-width: none;
+  cursor: text;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#terminal::-webkit-scrollbar {
+  display: none;
+}
+
+#terminal::selection {
+  background: var(--selection-bg);
+}
+
+/* Block cursor / typing indicator rendered at the caret on the input line. */
+.cursor {
+  background: var(--cursor-color);
+  color: var(--bg);
+  animation: blink 1.1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
