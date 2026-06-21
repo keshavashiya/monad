@@ -2,6 +2,14 @@
 
 > A monad is an indivisible unit of being. This one is mine.
 
+**▶ Live console: [keshavashiya.github.io/monad](https://keshavashiya.github.io/monad/)** — or run it in your own terminal:
+
+```bash
+npx keshavashiya          # boot the kernel locally (Node 20+, no install)
+```
+
+[![npm](https://img.shields.io/npm/v/keshavashiya?label=npx%20keshavashiya)](https://www.npmjs.com/package/keshavashiya)
+
 MONAD is a compiled identity kernel: a single Rust core that **AI agents can interview**, that **runs anywhere** from one binary, and that **remembers its visitors on their own machine — never on a server**. It is compiled, not served. There is no database, no required backend — only a kernel and its embedded vault.
 
 The browser page is not "a website with a terminal theme." It is one **adapter** over the kernel — the same core also runs on the CLI (`npx keshavashiya`), in `wasmtime`, and as an MCP server an AI agent can connect to.
@@ -184,10 +192,15 @@ GitHub Actions builds everything automatically:
 |---|---|---|
 | `.github/workflows/ci.yml` | every push / PR | tests the kernel, validates the vault, builds **`dist/`** and the **npm package** (incl. a WASI smoke test), and uploads both as artifacts |
 | `.github/workflows/deploy.yml` | push to `main` | builds `dist/` and deploys to GitHub Pages |
-| `.github/workflows/publish-npm.yml` | version tag `v*` / release | builds `monad.wasm` and publishes the `keshavashiya` package to npm, attaching the binary to the release |
+| `.github/workflows/publish-npm.yml` | release published | builds `monad.wasm` and publishes the `keshavashiya` package to npm, attaching the binary to the release |
 
 `publish-npm.yml` needs an `NPM_TOKEN` repository secret (Settings → Secrets →
-Actions). Tag a release to ship: `git tag v5.0.0 && git push --tags`.
+Actions). To ship a new version, bump `npm/package.json` and publish a release —
+the tag and workflow follow automatically:
+
+```bash
+gh release create v5.0.1 --target main --title "v5.0.1" --notes "…"
+```
 
 ## License
 
