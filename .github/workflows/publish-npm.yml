@@ -1,12 +1,11 @@
 name: publish-npm
 
 # Optional: publish the `keshavashiya` package to npm and attach monad.wasm to the
-# GitHub Release. Runs only on version tags (v*) or published releases, so normal
-# pushes are unaffected. Requires an NPM_TOKEN repository secret.
+# GitHub Release. Runs only when a release is published (which also creates the
+# tag), so normal pushes are unaffected and each release fires exactly one run.
+# Requires an NPM_TOKEN repository secret.
 
 on:
-  push:
-    tags: ['v*']
   release:
     types: [published]
   workflow_dispatch:
