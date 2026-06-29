@@ -1,6 +1,6 @@
 {
   "name": "keshavashiya",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Boot Keshav Ashiya's compiled identity kernel (MONAD) in your terminal. v4 was a static card; v5 is a real WASM kernel you can run, script, and let an AI agent interview.",
   "bin": {
     "keshavashiya": "./card.js",
