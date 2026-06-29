@@ -36,10 +36,19 @@ async function main() {
     process.exit(1);
   }
 
+  // WASI has no TIOCGWINSZ, so the kernel can't read the terminal width itself;
+  // and shells don't export $COLUMNS. Node knows the width, so pass it in as
+  // COLUMNS (the kernel reads it) — without this, tables fall back to a narrow
+  // fixed layout that truncates. Omitted when stdout isn't a TTY (piped).
+  const env = { ...process.env };
+  if (process.stdout.isTTY && process.stdout.columns) {
+    env.COLUMNS = String(process.stdout.columns);
+  }
+
   const wasi = new WASI({
     version: 'preview1',
     args: ['monad', ...process.argv.slice(2)],
-    env: process.env,
+    env,
     returnOnExit: true,
   });
 
