@@ -36,10 +36,30 @@ async function main() {
     const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
     const avail = container.clientWidth - padX;
     if (!charWidth || avail <= 0) return 80;
-    return Math.max(24, Math.floor(avail / charWidth));
+    // -1 col of slack: sub-pixel rounding in charWidth otherwise lets the kernel
+    // size a table a hair wider than the viewport, which then wraps and
+    // misaligns. Better to leave a sliver of margin than to overflow.
+    return Math.max(24, Math.floor(avail / charWidth) - 1);
   };
   const reportCols = () => setCols(measureCols());
   window.addEventListener('resize', reportCols);
+  // The web font loads async; the first measure can use the narrower fallback
+  // and overcount columns. Re-measure once JetBrains Mono is ready.
+  document.fonts?.ready.then(reportCols);
+
+  // When the mobile soft keyboard opens, the layout viewport stays full-height
+  // (behind the keyboard) so the prompt ends up hidden under it with dead black
+  // space above. Pin the terminal to the visible viewport and keep it scrolled
+  // to the prompt. (Android also honours interactive-widget in the meta tag.)
+  const vv = window.visualViewport;
+  if (vv) {
+    const fitViewport = () => {
+      container.style.height = `${vv.height}px`;
+      container.scrollTop = container.scrollHeight;
+    };
+    vv.addEventListener('resize', fitViewport);
+    vv.addEventListener('scroll', fitViewport);
+  }
 
   // Load this browser's persisted memory before booting (for "welcome back").
   await initMemory();

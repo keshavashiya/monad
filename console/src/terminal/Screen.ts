@@ -108,16 +108,61 @@ export class Screen {
   }
 
   private render(): void {
-    const rendered = this.lines.map(line => ansiToInlineHtml(line));
+    // Prose lines wrap to the viewport (readable on mobile). Tables can't wrap
+    // without misaligning — the kernel renders them at a fixed grid width that
+    // exceeds a phone's — so each table is put in its own horizontally-
+    // scrollable container. A table is anchored by its multi-column rule: a
+    // box-drawing separator with a 2-space gap between columns (`─  ─`), which
+    // distinguishes it from a solid decorative divider (boot banner) or prose.
+    // It spans the header row directly above through the rows below until a
+    // blank line. Everything else wraps normally.
+    const lines = this.lines;
+    const stripAnsi = (l: string) =>
+      l.replace(/\x1b\[[0-9;]*m/g, '').replace(/\x1b\][^\x1b]*\x1b\\/g, '');
+    const isColumnRule = (l: string) => /─ {2,}─/.test(stripAnsi(l));
+    // A table row/continuation always has a 2-space column gap or indent;
+    // prompts, headings and prose use single spaces, so they bound the table.
+    // (Output ends with a bare \n, not a blank line, so we can't rely on one.)
+    const isRow = (l: string) => /  /.test(stripAnsi(l));
+    const inTable = new Array(lines.length).fill(false);
+    for (let k = 0; k < lines.length; k++) {
+      if (!isColumnRule(lines[k])) continue;
+      inTable[k] = true;
+      if (k > 0 && isRow(lines[k - 1])) inTable[k - 1] = true;      // header row
+      for (let r = k + 1; r < lines.length && isRow(lines[r]); r++) // data rows
+        inTable[r] = true;
+    }
+
+    const pieces: string[] = [];
+    let prose: string[] = [];
+    const flushProse = () => {
+      if (prose.length) { pieces.push(prose.join('<br>')); prose = []; }
+    };
+
+    let i = 0;
+    while (i < lines.length) {
+      if (inTable[i]) {
+        let j = i;
+        while (j < lines.length && inTable[j]) j++;
+        flushProse();
+        const html = lines.slice(i, j).map(l => ansiToInlineHtml(l) || '');
+        pieces.push(`<div class="hscroll">${html.join('<br>')}</div>`);
+        i = j;
+      } else {
+        prose.push(ansiToInlineHtml(lines[i]) || '');
+        i++;
+      }
+    }
 
     // The bottom (open) line: current output tail + the live input region.
     let bottom = ansiToInlineHtml(this.current);
     if (this.input.active) {
       bottom += ansiToInlineHtml(this.input.prefix) + renderInput(this.input);
     }
-    rendered.push(bottom);
+    prose.push(bottom);
+    flushProse();
 
-    this.el.innerHTML = rendered.map(h => h || '').join('<br>');
+    this.el.innerHTML = pieces.join('');
     this.el.scrollTop = this.el.scrollHeight;
   }
 }

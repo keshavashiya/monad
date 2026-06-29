@@ -10,7 +10,9 @@
   --dim: #6c6c6c;
 
   --font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'IBM Plex Mono', 'Consolas', monospace;
-  --font-size: 13px;
+  /* Scale with viewport width so a phone fits ~55 columns (less wrapping,
+     tables stay legible) while desktop stays capped at 13px. */
+  --font-size: clamp(9px, 2.7vw, 13px);
   --line-height: 1.25;
   --cursor-color: var(--amber);
   --selection-bg: rgba(230, 185, 30, 0.25);
@@ -48,6 +50,17 @@ html, body {
 }
 
 #terminal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fixed-width grids (tables, ASCII rules) that exceed the viewport: keep them
+   intact and let them scroll sideways instead of wrapping and misaligning. */
+.hscroll {
+  white-space: pre;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.hscroll::-webkit-scrollbar {
   display: none;
 }
 

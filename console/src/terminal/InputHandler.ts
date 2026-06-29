@@ -181,6 +181,16 @@ export class InputHandler {
     this.echoEnabled = enabled;
   }
 
+  /** Replace buffer + caret from an external source (mobile soft keyboard,
+   *  whose hidden <input> is the source of truth while a touch device types). */
+  setLine(text: string, cursor: number): void {
+    if (!this.enabled) return;
+    this.buffer = text;
+    this.cursorPos = Math.max(0, Math.min(text.length, cursor));
+    this.historyIdx = -1;
+    this.update();
+  }
+
   /** Reset the buffer and caret (keeps history). */
   reset(): void {
     this.buffer = '';
